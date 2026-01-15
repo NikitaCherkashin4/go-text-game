@@ -3,7 +3,6 @@ package models
 import (
 	"bufio"
 	"fmt"
-	"io"
 	"strings"
 )
 
@@ -12,9 +11,9 @@ type Player struct {
 	Health int
 }
 
-func NewPlayer(name string) *Player {
+func NewPlayer() *Player {
 	return &Player{
-		Name:   name,
+		Name:   "Hero",
 		Health: 100,
 	}
 }
@@ -25,15 +24,11 @@ func RequestInput(reader *bufio.Reader, message string) string {
 	return strings.TrimSpace(choice)
 }
 
-func GetPlayerName(input io.Reader) string {
-	reader := bufio.NewReader(input)
-
+func (p *Player) SetName(reader *bufio.Reader) {
 	choice := RequestInput(reader, "Do you want to choose your own name? (yes/no): ")
 
 	if strings.ToLower(choice) == "yes" || strings.ToLower(choice) == "y" {
 		name := RequestInput(reader, "Enter your name: ")
-		return name
+		p.Name = name
 	}
-
-	return "Hero"
 }
