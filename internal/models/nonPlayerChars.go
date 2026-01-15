@@ -5,6 +5,9 @@ type NPC struct {
 	Health int
 }
 
-func NewNPC(Name string) *NPC {
-	return &NPC{Health: 10}
+func NewNPC(name string) *NPC {
+	return &NPC{
+		Name:   name,
+		Health: 10,
+	}
 }

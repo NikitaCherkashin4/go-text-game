@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/NikitaCherkashin4/go-text-game/internal/generation"
 	"github.com/NikitaCherkashin4/go-text-game/internal/models"
 )
 
@@ -28,20 +29,8 @@ func NewGame() *Game {
 	player := models.NewPlayer()
 	player.SetName(reader)
 
-	hub := &models.Location{
-		Name:        "Town Hub",
-		Description: "A safe place to rest and choose your next adventure.",
-		IsHub:       true,
-		HasEnemy:    false,
-	}
-
-	goblinCave := &models.Location{
-		Name:        "Goblin Cave",
-		Description: "A dark cave inhabited by a goblin.",
-		IsHub:       false,
-		HasEnemy:    true,
-		Enemies:     []*models.NPC{models.NewNPC("Goblin")},
-	}
+	hub := generation.NewHub()
+	goblinCave := generation.NewGoblinCave()
 
 	gameState := &GameState{
 		CurrentLocation:    hub,
@@ -60,4 +49,6 @@ func NewGame() *Game {
 	}
 }
 
-func (g *Game) Start() {}
+func (g *Game) Start() {
+	fmt.Println(g.state.AvailableLocations)
+}
