@@ -11,13 +11,6 @@ type Player struct {
 	Health int
 }
 
-func NewPlayer() *Player {
-	return &Player{
-		Name:   "Hero",
-		Health: 100,
-	}
-}
-
 func RequestInput(reader *bufio.Reader, message string) string {
 	fmt.Print(message)
 	choice, _ := reader.ReadString('\n')

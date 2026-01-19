@@ -17,6 +17,6 @@ func NewGoblinCave() *models.Location {
 		Description: "A dark cave inhabited by a goblin.",
 		IsHub:       false,
 		HasEnemy:    true,
-		Enemies:     []*models.NPC{models.NewNPC("Goblin")},
+		Enemies:     []*models.NPC{NewNPC("Goblin")},
 	}
 }
